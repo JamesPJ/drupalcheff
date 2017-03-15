@@ -3,7 +3,7 @@
 function demo_menu(){
 	$items = array();
 	$items['custom/demo/index'] = array(
-		'title'            => t('Custom module'),
+		'title'            => t('Hello World'),
 		'page callback'    => 'demo_index_action',
 		'access arguments' => array('access content'),
 		'type'             => MENU_LOCAL_TASK,
