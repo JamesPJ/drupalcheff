@@ -1,0 +1,41 @@
+<?php
+
+function demo_uninstall(){
+    drupal_uninstall_schema('demo');
+  
+}
+  
+function demo_enable() {
+    if (db_table_exists('demo') == FALSE) {
+		drupal_install_schema('demo');
+    }
+
+
+}  
+
+function demo_disable() {
+    if (db_table_exists('demo') == TRUE) {
+		drupal_uninstall_schema('demo');
+		db_query('DROP TABLE {demo}');
+    }
+   
+}
+
+function demo_schema() {
+    $schema = array();
+    $schema['demo'] = array(
+        'description' => 'demo',
+        'fields' => array(
+            'id' => array(
+            'description' => 'id',
+            'type' => 'serial',
+            'unsigned' => true,
+            'not null' => true
+            ),
+        ),
+        'primary key' => array('id')
+    );
+  
+    
+    return $schema;
+}

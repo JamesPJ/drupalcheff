@@ -1,0 +1,25 @@
+<?php 
+
+function demo_menu(){
+	$items = array();
+	$items['custom/demo/index'] = array(
+		'title'            => t('Custom module'),
+		'page callback'    => 'demo_index_action',
+		'access arguments' => array('access content'),
+		'type'             => MENU_LOCAL_TASK,
+	);
+
+	return $items;
+}
+
+function demo_theme(){
+	 return array(
+		'demo_index' => array(
+			'template' => 'demo_index'
+		)
+	);
+}
+function demo_index_action(){
+	 return theme('demo_index', array());
+}
+

@@ -1,0 +1,10 @@
+name = demo 
+description = A demo module
+core = 7.x
+package = Custom
+
+;Styles(Optional)
+stylesheets[all][] = css/demo_style.css
+
+;Scripts(Optional)
+scripts[] = js/demo_jfunctions.js
