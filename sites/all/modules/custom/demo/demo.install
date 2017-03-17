@@ -32,10 +32,20 @@ function demo_schema() {
             'unsigned' => true,
             'not null' => true
             ),
+			'example_varchar' => array(
+            'description' => 'Varchar field',
+            'type' => 'varchar',
+            'length' => 255,
+            'not null' => true
+            ),
         ),
         'primary key' => array('id')
     );
   
     
     return $schema;
+}
+
+function demo_update_1() {
+  db_add_field('demo', 'newcol', array('type' => 'int'));
 }
