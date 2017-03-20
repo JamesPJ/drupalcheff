@@ -23,3 +23,46 @@ function demo_index_action(){
 	 return theme('demo_index', array());
 }
 
+/*
+ * implements hook_form($form, &$form_state)
+ */
+function demo_form($form, &$form_state) {
+  $form['name'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Enter your name'),
+      '#default_value' => '',
+      '#required' => TRUE
+  );
+  $form['phone'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Enter your phone number'),
+      '#default_value' => '',
+      '#required' => TRUE
+  );
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  
+  return $form;
+}
+
+/*
+ * impletements hook_form_validate($form, &$form_state)
+ */
+function demo_form_validate($form, &$form_state){
+    //I'm going to validate only phone number for this demo
+    $phone = $form_state['values']['phone'];
+    if(!preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $phone)) {
+        form_set_error('phone', 'Please enter a valid phone number');
+    }
+}
+
+/*
+ * implements hook_form_submit($form, &$form_state)
+ */
+function demo_form_submit($form, &$form_state){
+    $name = $form_state['values']['name'];
+    $phone = $form_state['values']['phone'];
+    drupal_set_message(t('You have entered @name and @phone', array('@name' => $name, '@phone' => $phone)));
+}
