@@ -8,15 +8,26 @@ function demo_menu(){
 		'access arguments' => array('access content'),
 		'type'             => MENU_LOCAL_TASK,
 	);
-
+	$items['demo/form'] =array(
+		'title'            => t('Demo Form'),
+		'page callback' => array( 'drupal_get_form'),
+		'page arguments' => array('demo_form'),
+		'access arguments' => array('access content'),
+		'type'             => MENU_LOCAL_TASK,
+	);
 	return $items;
 }
 
-function demo_theme(){
+function demo_theme($existing, $type, $theme, $path) {
 	 return array(
 		'demo_index' => array(
 			'template' => 'demo_index'
-		)
+		),
+		'demo_form' => array(
+			'render element' => 'form',
+			'path' => drupal_get_path('module', 'demo') ,
+			'template' => 'demo-form',
+		),
 	);
 }
 function demo_index_action(){
